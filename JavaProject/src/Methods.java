@@ -31,7 +31,7 @@ public class Methods {
             // If even put it into evenArray
             if (j % 2 == 0) {
                 evenArray[indexEven++] = j;
-                // If odd put it into oddArray
+            // If odd put it into oddArray
             } else {
                 oddArray[indexOdd++] = j;
             }
@@ -102,7 +102,17 @@ public class Methods {
         }
     }
 
-    private static void biBinarySearch() {
+    private static void biBinarySearch(int[] arr, int nToSearch) {
+        // e = end
+        // s = start
 
+        // cycle while end - start == 1
+            // verify if arr[s] or arr[e] are the nToSearch
+
+            // verify if arr[e] is odd or grader then nToSearch
+                // verify if arr[e - ((e - s) / 2)] is eve n and minor then nToSearch
+                    // put s = e - ((e - s) / 2)
+                // else
+                    // put e = e - ((e - s) / 2)
     }
 }
