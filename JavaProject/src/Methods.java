@@ -1,23 +1,15 @@
+import com.sun.source.tree.BreakTree;
+
 public class Methods {
     public static void main(String[] args) {
-        int[] testArr = {1, 2, 3, 7, 5, 6, 4};
-        int[] destArray = new int[testArr.length];
 
-        destArray = evenOddSearch(testArr);
     }
 
     private static void wrongIndexSearch() {
 
     }
 
-    /*
-    Creare il metodo evenOddSearch che dato un vettore,
-    ordini i numeri pari in modo crescente e i dispari in modo decrescente,
-    disposti nella sequenza:
-    - pari crescente
-    - dispari decrescente
-    Esempio del contenuto dell'array: 3,4,2,5,6,1,7,8,9 --> 2,4,6,8,9,7,5,3,1
-    */
+
     private static int[] evenOddSearch(int[] arr) {
         int[] finalArray = new int[arr.length]; // Array where there is first even and last odd numbers
         int[] evenArray = new int[arr.length]; // Array to store the even numbers
@@ -67,6 +59,7 @@ public class Methods {
 
         for (int i = 0; i < index; i++) {
             numMin = arr[i];
+            posOfnMin = i;
             // Get the minimum number
             for (int j = i; j < index; j++){
                 if (arr[j] < numMin) {
@@ -87,6 +80,7 @@ public class Methods {
 
         for (int i = 0; i < index; i++) {
             numMax = arr[i];
+            posOfnMax = i;
             // Get the minimum number
             for (int j = i; j < index; j++){
                 if (arr[j] > numMax) {
@@ -102,17 +96,53 @@ public class Methods {
         }
     }
 
-    private static void biBinarySearch(int[] arr, int nToSearch) {
-        // e = end
-        // s = start
+    private static int biBinarySearch(int[] arr, int nToSearch) {
+        arr = evenOddSearch(arr);
+        int start = 0, end = arr.length - 1;
+        boolean even = nToSearch % 2 == 0;
+
 
         // cycle while end - start == 1
-            // verify if arr[s] or arr[e] are the nToSearch
+        while (end - start != 1) {
+            // verify if arr[start] or arr[end] are equals to nToSearch
+            if (arr[start] == nToSearch)
+               return start;
+            else if (arr[end] == nToSearch)
+                return end;
 
-            // verify if arr[e] is odd or grader then nToSearch
-                // verify if arr[e - ((e - s) / 2)] is eve n and minor then nToSearch
-                    // put s = e - ((e - s) / 2)
-                // else
-                    // put e = e - ((e - s) / 2)
+            if (even) {
+                // verify if arr[end] is odd or grader then nToSearch
+                if (arr[end] % 2 != 0 || arr[end] > nToSearch) {
+                    // verify if arr[end - ((end - start) / 2)] is even and minor then nToSearch
+                    if (arr[end - (end - start) / 2] % 2 == 0 && arr[end - (end - start) / 2] < nToSearch) {
+                        // put start = end - ((end - start) / 2)
+                        start = end - (end - start) / 2;
+                    } else {
+                        // put end = end - ((end - start) / 2)
+                        end = end - (end - start) / 2;
+                    }
+                }
+            } else {
+                // verify if arr[start] is even or grader then nToSearch
+                if (arr[start] % 2 == 0 || arr[start] > nToSearch) {
+                    // verify if arr[end - ((end - start) / 2)] is odd and minor then nToSearch
+                    if (arr[end - (end - start) / 2] % 2 != 0 && arr[end - (end - start) / 2] < nToSearch) {
+                        // put end = end - ((end - start) / 2)
+                        end = end - (end - start) / 2;
+                    }
+                    else {
+                        // put start = end - ((end - start) / 2)
+                        start = end - (end - start) / 2;
+                    }
+                }
+            }
+        }
+
+        if (arr[start] == nToSearch)
+            return start;
+        else if (arr[end] == nToSearch)
+            return end;
+
+        return -1;
     }
 }
