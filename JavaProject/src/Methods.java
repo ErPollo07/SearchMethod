@@ -25,15 +25,15 @@ public class Methods {
 
         int indexEven = 0, indexOdd = 0;
 
-        // Cycle through all the elemnts arr
-        for (int i = 0; i < arr.length; i++) {
+        // Cycle through all the elements arr
+        for (int j : arr) {
             // Check if the num in pos i is even or odd
             // If even put it into evenArray
-            if (arr[i] % 2 == 0) {
-                evenArray[indexEven++] = arr[i];
-            // If odd put it into oddArray
+            if (j % 2 == 0) {
+                evenArray[indexEven++] = j;
+                // If odd put it into oddArray
             } else {
-                oddArray[indexOdd++] = arr[i];
+                oddArray[indexOdd++] = j;
             }
         }
 
