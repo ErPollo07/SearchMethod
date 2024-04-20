@@ -34,11 +34,33 @@ public class Methods {
             }
         }
 
-        // Order the arrays with 2 cycles
+        // Order the arrays with 2 calls of the method oderArray
+        orderArray(evenArray, indexEven);
+        orderArray(oddArray, indexOdd);
 
         // put the arrays, evenArray and oddArray, together.
 
         return finalArray;
+    }
+
+    private static void orderArray(int[] arr, int index) {
+        int numMin, posOfnMin, temp;
+
+        for (int i = 0; i < index; i++) {
+            numMin = arr[i];
+            // Get the minimum number
+            for (int j = i; j < index; j++){
+                if (arr[i] < numMin) {
+                    numMin = arr[j];
+                    posOfnMin = j;
+                }
+            }
+
+            // switch position of the numMin with even[i]
+            temp = arr[i];
+            arr[i] = numMin;
+            arr[posOfnMin] = temp;
+        }
     }
 
     private static void biBinarySearch() {
