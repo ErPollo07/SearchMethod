@@ -10,7 +10,14 @@ public class evenOddSearch {
         System.out.println("Final array = " + Arrays.toString(dest));
     }
 
-    public static int[] evenOddSearch(int[] arr) {
+    /**
+     * This method sort the array passed as param.<br>
+     * First puts all the even numbers (of the array passed as param) in ascending order.<br>
+     * Last puts all the odd number (of the array passed as param) in descending order.
+     * @param arr the array which we want ot sort.
+     * @return the final array with first the even numbers and last the odd ones.
+     */
+    private static int[] evenOddSearch(int[] arr) {
         int[] finalArray = new int[arr.length]; // Array where there is first even and last odd numbers
         int[] evenArray = new int[arr.length]; // Array to store the even numbers
         int[] oddArray = new int[arr.length]; // Array to store the odd numbers
@@ -39,6 +46,16 @@ public class evenOddSearch {
         return finalArray;
     }
 
+    /**
+     * Merge two array in one.<br>
+     * First puts the elements (from pos 0 to indexArr1 - 1) of the arr1 and then
+     * the elements (from pos 0 to indexArr1 - 1) of arr2.
+     * @param arr1 The first array.
+     * @param indexArr1 the position (of arr1) after the last inset number.
+     * @param arr2 the second array.
+     * @param indexArr2 the position (of arr2) after the last inset number.
+     * @return an array with, first the element of arr1, last the element of arr2.
+     */
     private static int[] mergeArrays(int[] arr1, int indexArr1, int[] arr2, int indexArr2) {
         int[] finalArray = new int[indexArr1 + indexArr2];
         int indexFinal = 0;
@@ -54,6 +71,11 @@ public class evenOddSearch {
         return finalArray;
     }
 
+    /**
+     * Order arr param in ascending order.
+     * @param arr the array which wa want to order
+     * @param index the index of where to stop the order
+     */
     private static void orderUpArray(int[] arr, int index) {
         int numMin, posOfnMin, temp;
 
@@ -75,6 +97,11 @@ public class evenOddSearch {
         }
     }
 
+    /**
+     * Order arr param in descending order.
+     * @param arr the array which wa want to order.
+     * @param index the index of where to stop the order.
+     */
     private static void orderDownArray(int[] arr, int index) {
         int numMax, posOfnMax = 0, temp;
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class wrongIndexSearch {
 
-    static int numberOfSearch = 0;
+    static int numberOfSearch;
     static int whereToWrong;
     static int lastIndex;
 
@@ -30,6 +30,22 @@ public class wrongIndexSearch {
         /* END EXAMPLE FOR wrongIndexSearch */
     }
 
+    /**
+     * To use this method you need to create three global variable:
+     * <blockquote><pre>
+     *     static int numberOfSearch;
+     *     static int whereToWrong;
+     *     static int lastIndex;
+     * </pre></blockquote>
+     * The method intentionally returns a wrong index under certain conditions. If the variable {@code numberOfSearch}
+     * reaches a value greater than or equal to 3 and the variable {@code whereToWrong} is still 0, the method
+     * will set {@code whereToWrong} to a random number between 3 and 5. Then, if the {@code whereToWrong}
+     * value matches the current {@code numberOfSearch}, the method will return the last index of the element
+     * searched for.
+     * @param arr The array to be searched.
+     * @param nToSearch The element to be searched for.
+     * @return a wrong index for the element being searched for.
+     */
     private static int wrongIndexSearch(int[] arr, int nToSearch) {
         Random random = new Random();
 
@@ -57,7 +73,6 @@ public class wrongIndexSearch {
                     return i;
                 }
             }
-
         }
 
         return -1;
