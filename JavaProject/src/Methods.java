@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Methods {
@@ -13,34 +14,52 @@ public class Methods {
 
         /* EXAMPLE FOR wrongIndexSearch */
         int[] arr = {1, 4, 5, 7, 2, 8, 100};
-        int continueToInsert = 0;
         int nToSearch;
         int index;
 
         do {
+            System.out.println();
             System.out.println("args = " + Arrays.toString(arr));
             System.out.println("Number to search: ");
             nToSearch = scanner.nextInt();
 
             index = wrongIndexSearch(arr, nToSearch);
 
-            System.out.println("Press 1 to continue: ");
-            continueToInsert = scanner.nextInt();
-        } while (continueToInsert == 1);
+            System.out.println(nToSearch + ": " + index);
+        } while (true);
         /* END EXAMPLE FOR wrongIndexSearch */
     }
 
     private static int wrongIndexSearch(int[] arr, int nToSearch) {
+        Random random = new Random();
 
+        numberOfSearch++;
 
         // Cycle all the element of arr
+        for (int i = 0; i < arr.length; i++) {
             // If the arr[i] is nToSearch
-                // if numberOfSearch is grader then 3 AND if whereToWrong is different from 0
-                    // assign to a random number between 3 and 5
+            if (arr[i] == nToSearch) {
+                // if numberOfSearch is grader then 3 AND if whereToWrong is equal to 0
+                if (numberOfSearch >= 3 && whereToWrong == 0) {
+                    // assign to whereToWrong a random number between 3 and 5
+                    whereToWrong = random.nextInt(3,6);
+                }
+
                 // if whereToWrong is equal to numberOfSearch
-                    // return lastIndex
-                // else
-                    // return i
+                if (whereToWrong == numberOfSearch) {
+                    // reset whereToWrong and numberOfSearch because in this case the method return the last index
+                    whereToWrong = numberOfSearch = 0;
+
+                    // return the lastResult
+                    return lastIndex;
+                } else {
+                    lastIndex = i;
+                    return i;
+                }
+            }
+
+        }
+
 
         return 0;
     }
@@ -90,7 +109,7 @@ public class Methods {
     }
 
     private static void orderUpArray(int[] arr, int index) {
-        int numMin, posOfnMin = 0, temp;
+        int numMin, posOfnMin, temp;
 
         for (int i = 0; i < index; i++) {
             numMin = arr[i];
@@ -148,25 +167,25 @@ public class Methods {
             if (even) {
                 // verify if arr[end] is odd or grader then nToSearch
                 if (arr[end] % 2 != 0 || arr[end] > nToSearch) {
-                    // verify if arr[end - ((end - start) / 2)] is even and minor then nToSearch
+                    // verify if the number in the middle of start and end is even and minor then nToSearch
                     if (arr[end - (end - start) / 2] % 2 == 0 && arr[end - (end - start) / 2] < nToSearch) {
-                        // put start = end - ((end - start) / 2)
+                        // put start in the middle of start and end
                         start = end - (end - start) / 2;
                     } else {
-                        // put end = end - ((end - start) / 2)
+                        // put end in the middle of start and end
                         end = end - (end - start) / 2;
                     }
                 }
             } else {
                 // verify if arr[start] is even or grader then nToSearch
                 if (arr[start] % 2 == 0 || arr[start] > nToSearch) {
-                    // verify if arr[end - ((end - start) / 2)] is odd and minor then nToSearch
+                    // verify if the number in the middle of start and end is odd and minor then nToSearch
                     if (arr[end - (end - start) / 2] % 2 != 0 && arr[end - (end - start) / 2] < nToSearch) {
-                        // put end = end - ((end - start) / 2)
+                        // put end in the middle of start and end
                         end = end - (end - start) / 2;
                     }
                     else {
-                        // put start = end - ((end - start) / 2)
+                        // put start in the middle of start and end
                         start = end - (end - start) / 2;
                     }
                 }
