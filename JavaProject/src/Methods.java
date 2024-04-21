@@ -1,14 +1,49 @@
-import com.sun.source.tree.BreakTree;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Methods {
+
+    static int numberOfSearch = 0;
+    static int whereToWrong;
+    static int lastIndex;
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+
+        /* EXAMPLE FOR wrongIndexSearch */
+        int[] arr = {1, 4, 5, 7, 2, 8, 100};
+        int continueToInsert = 0;
+        int nToSearch;
+        int index;
+
+        do {
+            System.out.println("args = " + Arrays.toString(arr));
+            System.out.println("Number to search: ");
+            nToSearch = scanner.nextInt();
+
+            index = wrongIndexSearch(arr, nToSearch);
+
+            System.out.println("Press 1 to continue: ");
+            continueToInsert = scanner.nextInt();
+        } while (continueToInsert == 1);
+        /* END EXAMPLE FOR wrongIndexSearch */
     }
 
-    private static void wrongIndexSearch() {
+    private static int wrongIndexSearch(int[] arr, int nToSearch) {
 
+
+        // Cycle all the element of arr
+            // If the arr[i] is nToSearch
+                // if numberOfSearch is grader then 3 AND if whereToWrong is different from 0
+                    // assign to a random number between 3 and 5
+                // if whereToWrong is equal to numberOfSearch
+                    // return lastIndex
+                // else
+                    // return i
+
+        return 0;
     }
-
 
     private static int[] evenOddSearch(int[] arr) {
         int[] finalArray = new int[arr.length]; // Array where there is first even and last odd numbers
